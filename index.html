@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Real Elymind </title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Elymind V (Ultimate)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body id="app-body" class="texture-fire">
+
+    <div class="container">
+        <header class="glass-card" style="text-align: center; padding: 15px;">
+            <h2 id="section-title">Quick Fire Quest</h2>
+            <p id="section-desc" style="font-size: 0.8rem; opacity: 0.8;">Ignite Momentum</p>
+        </header>
+
+        <section id="fire-section" class="element-section">
+            <div class="glass-card">
+                <div style="display:flex; justify-content:space-between;">
+                    <span>🔥 Heat Level</span>
+                    <strong id="xp-display" style="color:#ffcc80;">0 XP</strong>
+                </div>
+                <div style="background:rgba(0,0,0,0.3); height:8px; border-radius:10px; margin-top:10px; overflow:hidden;">
+                    <div id="heat-bar" style="width:0%; height:100%; background:#ff512f; transition:width 0.5s;"></div>
+                </div>
+            </div>
+            <div id="quest-list"></div>
+        </section>
+
+        <section id="water-section" class="element-section" style="display:none;">
+    <div class="glass-card" id="player-card" style="text-align: center; min-height: 450px; display:flex; flex-direction:column; justify-content:center;">
+        
+        <h3 style="margin-bottom:15px;">Select Music</h3>
+        
+        <select id="mood-selector" onchange="fetchMusic()" style="background:rgba(255,255,255,0.9); color:#333; font-weight:bold;">
+            <option value="focus">🧠 Focus Enhancer</option>
+            <option value="anxiety">😰 Anxiety Relief</option>
+            <option value="sleep">🌙 Sleepy Tune</option>
+            <option value="energy">⚡ Energy Booster</option>
+            <option value="sadness">🌧️ Sadness Relief</option>
+            <option value="calm">🍃 Calming Sound</option>
+            <option value="anger">🔥 Anger Relief</option>
+        </select>
+
+        <div id="spectrum-visualizer" class="spectrum-container">
+            </div>
+
+        <h4 id="track-name" style="opacity:0.9; margin-top:10px; font-size:0.9rem;">Select Mood</h4>
+        <audio id="audio-player" controls style="width: 100%; margin-top:15px; opacity: 0.9;"></audio>
+    </div>
+</section>
+
+        <section id="air-section" class="element-section" style="display:none; text-align: center;">
+            <div class="glass-card">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:20px;">
+                    <button onclick="setBreathMode('box')" class="breath-btn" style="background:rgba(255,255,255,0.2); color:white; padding:10px;">📦 Box (Stress)</button>
+                    <button onclick="setBreathMode('relax')" class="breath-btn" style="background:rgba(255,255,255,0.2); color:white; padding:10px;">🌙 4-7-8 (Sleep)</button>
+                    <button onclick="setBreathMode('panic')" class="breath-btn" style="background:rgba(255,255,255,0.2); color:white; padding:10px;">🚨 Panic Help</button>
+                    <button onclick="setBreathMode('balance')" class="breath-btn" style="background:rgba(255,255,255,0.2); color:white; padding:10px;">⚖️ Balance Breath</button>
+                </div>
+
+                <div id="breath-circle" class="breath-visual">
+                    <span id="breath-text" class="breath-text">Ready</span>
+                </div>
+                
+                <p id="breath-instruction" style="height:20px; opacity:0.8; margin-top:15px;">Select a mode above</p>
+                <button onclick="startBreathing()" id="breath-start-btn" style="background:#00e5ff; color:#333; width:80%; padding:15px; border-radius:30px; margin-top:20px; font-size:1.1rem; box-shadow: 0 0 15px #00e5ff;">Start Session</button>
+            </div>
+        </section>
+
+        <section id="earth-section" class="element-section" style="display:none;">
+    <div class="glass-card">
+        <h3>Smart Schedule</h3>
+        <div style="display:flex; gap:10px;">
+            <input type="text" id="task-name" placeholder="Task Name..." style="background:rgba(255,255,255,0.8);">
+            <input type="time" id="task-time" style="background:rgba(255,255,255,0.8); width: 100px;">
+        </div>
+        <button onclick="addTask()" style="background:#66bb6a; color:white; width:100%; padding:12px;">Add Task</button>
+    </div>
+    
+    <div id="timeline-container"></div>
+
+    <div style="margin-top: 20px; display:flex; gap:10px;">
+        <button onclick="resetSchedule()" style="flex:1; background:rgba(255, 82, 82, 0.1); border:1px solid #ff5252; color:#ff5252; padding:12px;">
+            🗑️ Reset
+        </button>
+        <button onclick="finishDay()" style="flex:2; background:#66bb6a; color:white; padding:12px;">
+            ✅ Finish Day
+        </button>
+    </div>
+</section>
+
+ <section id="space-section" class="element-section" style="display:none;">
+    <div class="glass-card" style="height: 580px; display: flex; flex-direction: column; background: rgba(0,0,0,0.6);">
+        
+        <div style="text-align:center; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:center; align-items:center;">
+            <span><i class="fas fa-robot" style="color:#d1c4e9;"></i> <strong>CRYS</strong></span>
+            
+            <select id="crys-mode" class="mode-select">
+                <option value="buddy">Best Friend Mode</option>
+                <option value="guide">Mentor Mode</option>
+                <option value="philosopher">Philosopher Mode</option>
+            </select>
+        </div>
+        
+        <div id="chat-history" class="chat-box" style="flex: 1;">
+            <div class="msg ai">
+                I am Crys. Select a mode above. 
+                <br><br>
+                 <b>(Best Friend):</b> Listen like a friend.<br>
+                 <b>(Mentor):</b> Guide you through steps.<br>
+                 <b>(Philosopher):</b> Use ancient wisdom.
+            </div>
+        </div>
+
+        <div style="display:flex; gap:10px; overflow-x:auto; padding:10px 0; scrollbar-width:none;">
+            <div class="chip" onclick="quickChat('I feel overwhelmed')">😰 Overwhelmed</div>
+            <div class="chip" onclick="quickChat('Give me motivation')">🔥 Motivation</div>
+            <div class="chip" onclick="quickChat('I cannot sleep')">🌙 Insomnia</div>
+            <div class="chip" onclick="quickChat('What is the purpose of stress?')">🤔 Purpose?</div>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-top:5px;">
+            <input type="text" id="user-input" placeholder="Message Crys..." style="margin:0; background:rgba(255,255,255,0.15); color:white; border:1px solid rgba(255,255,255,0.2);">
+            <button onclick="sendMessage()" style="background:#7e57c2; color:white; padding:0 20px;"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</section>
+      
+    </div>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('fire')"><i class="fas fa-fire"></i></div>
+        <div class="nav-item" onclick="switchTab('water')"><i class="fas fa-water"></i></div>
+        <div class="nav-item" onclick="switchTab('air')"><i class="fas fa-wind"></i></div>
+        <div class="nav-item" onclick="switchTab('earth')"><i class="fas fa-leaf"></i></div>
+        <div class="nav-item" onclick="switchTab('space')"><i class="fas fa-robot"></i></div>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
